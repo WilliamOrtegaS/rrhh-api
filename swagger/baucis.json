@@ -1,0 +1,1217 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Baucis generated API",
+    "version": "0.0.1",
+    "title": "api"
+  },
+  "basePath": "/api",
+  "tags": [
+    {
+      "name": "Empleado",
+      "description": "Empleado resource.",
+      "x-resource": true
+    },
+    {
+      "name": "Recibos",
+      "description": "Recibos resource.",
+      "x-resource": true
+    },
+    {
+      "name": "Groupreceipt",
+      "description": "Groupreceipt resource.",
+      "x-resource": true
+    }
+  ],
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json",
+    "text/html"
+  ],
+  "paths": {
+    "/empleados/{id}": {
+      "parameters": [
+        {
+          "$ref": "#/parameters/select"
+        },
+        {
+          "$ref": "#/parameters/populate"
+        },
+        {
+          "$ref": "#/parameters/id"
+        }
+      ],
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Sucessful response. Single resource.",
+            "schema": {
+              "$ref": "#/definitions/Empleado"
+            }
+          },
+          "404": {
+            "description": "No Empleado was found with that ID.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        },
+        "operationId": "getEmpleadoById",
+        "summary": "Get a Empleado by its unique ID",
+        "description": "Retrieve a Empleado by its ID.",
+        "tags": [
+          "Empleado"
+        ]
+      },
+      "put": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/X-Baucis-Update-Operator"
+          },
+          {
+            "name": "document",
+            "in": "body",
+            "description": "Update a document by sending the paths to be updated in the request body.",
+            "schema": {
+              "$ref": "#/definitions/Empleado"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/parameters/select"
+          },
+          {
+            "$ref": "#/parameters/populate"
+          },
+          {
+            "$ref": "#/parameters/id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sucessful response. Single resource.",
+            "schema": {
+              "$ref": "#/definitions/Empleado"
+            }
+          },
+          "404": {
+            "description": "No Empleado was found with that ID.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "422": {
+            "description": "Validation error.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ValidationError"
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        },
+        "operationId": "updateEmpleado",
+        "summary": "Modify a Empleado by its unique ID",
+        "description": "Update an existing Empleado by its ID.",
+        "tags": [
+          "Empleado"
+        ]
+      },
+      "delete": {
+        "responses": {
+          "200": {
+            "description": "Sucessful response. Single resource.",
+            "schema": {
+              "$ref": "#/definitions/Empleado"
+            }
+          },
+          "404": {
+            "description": "No Empleado was found with that ID.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        },
+        "operationId": "deleteEmpleadoById",
+        "summary": "Delete a Empleado by its unique ID",
+        "description": "Deletes an existing Empleado by its ID.",
+        "tags": [
+          "Empleado"
+        ]
+      }
+    },
+    "/empleados": {
+      "parameters": [
+        {
+          "$ref": "#/parameters/select"
+        },
+        {
+          "$ref": "#/parameters/populate"
+        },
+        {
+          "$ref": "#/parameters/sort"
+        }
+      ],
+      "get": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/count"
+          },
+          {
+            "$ref": "#/parameters/skip"
+          },
+          {
+            "$ref": "#/parameters/limit"
+          },
+          {
+            "$ref": "#/parameters/conditions"
+          },
+          {
+            "$ref": "#/parameters/distinct"
+          },
+          {
+            "$ref": "#/parameters/hint"
+          },
+          {
+            "$ref": "#/parameters/comment"
+          },
+          {
+            "$ref": "#/parameters/select"
+          },
+          {
+            "$ref": "#/parameters/populate"
+          },
+          {
+            "$ref": "#/parameters/sort"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sucessful response. Collection of resources.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Empleado"
+              }
+            }
+          },
+          "404": {
+            "description": "No empleados matched that query.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        },
+        "operationId": "queryEmpleado",
+        "summary": "Query some empleados",
+        "description": "Query over empleados.",
+        "tags": [
+          "Empleado"
+        ]
+      },
+      "post": {
+        "parameters": [
+          {
+            "name": "document",
+            "in": "body",
+            "description": "Create a document by sending the paths to be added in the request body.",
+            "schema": {
+              "$ref": "#/definitions/Empleado"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/parameters/select"
+          },
+          {
+            "$ref": "#/parameters/populate"
+          },
+          {
+            "$ref": "#/parameters/sort"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sucessful response. Single resource.",
+            "schema": {
+              "$ref": "#/definitions/Empleado"
+            }
+          },
+          "404": {
+            "description": "No empleados matched that query.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "422": {
+            "description": "Validation error.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ValidationError"
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        },
+        "operationId": "createEmpleado",
+        "summary": "Create some empleados",
+        "description": "Create one or more empleados.",
+        "tags": [
+          "Empleado"
+        ]
+      },
+      "delete": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/skip"
+          },
+          {
+            "$ref": "#/parameters/limit"
+          },
+          {
+            "$ref": "#/parameters/conditions"
+          },
+          {
+            "$ref": "#/parameters/distinct"
+          },
+          {
+            "$ref": "#/parameters/hint"
+          },
+          {
+            "$ref": "#/parameters/comment"
+          },
+          {
+            "$ref": "#/parameters/select"
+          },
+          {
+            "$ref": "#/parameters/populate"
+          },
+          {
+            "$ref": "#/parameters/sort"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sucessful response. Collection of resources.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Empleado"
+              }
+            }
+          },
+          "404": {
+            "description": "No empleados matched that query.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        },
+        "operationId": "deleteEmpleadoByQuery",
+        "summary": "Delete some empleados by query",
+        "description": "Delete all empleados matching the specified query.",
+        "tags": [
+          "Empleado"
+        ]
+      }
+    },
+    "/recibos/{id}": {
+      "parameters": [
+        {
+          "$ref": "#/parameters/select"
+        },
+        {
+          "$ref": "#/parameters/populate"
+        },
+        {
+          "$ref": "#/parameters/id"
+        }
+      ],
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Sucessful response. Single resource.",
+            "schema": {
+              "$ref": "#/definitions/Recibos"
+            }
+          },
+          "404": {
+            "description": "No Recibos was found with that ID.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        },
+        "operationId": "getRecibosById",
+        "summary": "Get a Recibos by its unique ID",
+        "description": "Retrieve a Recibos by its ID.",
+        "tags": [
+          "Recibos"
+        ]
+      },
+      "put": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/X-Baucis-Update-Operator"
+          },
+          {
+            "name": "document",
+            "in": "body",
+            "description": "Update a document by sending the paths to be updated in the request body.",
+            "schema": {
+              "$ref": "#/definitions/Recibos"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/parameters/select"
+          },
+          {
+            "$ref": "#/parameters/populate"
+          },
+          {
+            "$ref": "#/parameters/id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sucessful response. Single resource.",
+            "schema": {
+              "$ref": "#/definitions/Recibos"
+            }
+          },
+          "404": {
+            "description": "No Recibos was found with that ID.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "422": {
+            "description": "Validation error.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ValidationError"
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        },
+        "operationId": "updateRecibos",
+        "summary": "Modify a Recibos by its unique ID",
+        "description": "Update an existing Recibos by its ID.",
+        "tags": [
+          "Recibos"
+        ]
+      },
+      "delete": {
+        "responses": {
+          "200": {
+            "description": "Sucessful response. Single resource.",
+            "schema": {
+              "$ref": "#/definitions/Recibos"
+            }
+          },
+          "404": {
+            "description": "No Recibos was found with that ID.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        },
+        "operationId": "deleteRecibosById",
+        "summary": "Delete a Recibos by its unique ID",
+        "description": "Deletes an existing Recibos by its ID.",
+        "tags": [
+          "Recibos"
+        ]
+      }
+    },
+    "/recibos": {
+      "parameters": [
+        {
+          "$ref": "#/parameters/select"
+        },
+        {
+          "$ref": "#/parameters/populate"
+        },
+        {
+          "$ref": "#/parameters/sort"
+        }
+      ],
+      "get": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/count"
+          },
+          {
+            "$ref": "#/parameters/skip"
+          },
+          {
+            "$ref": "#/parameters/limit"
+          },
+          {
+            "$ref": "#/parameters/conditions"
+          },
+          {
+            "$ref": "#/parameters/distinct"
+          },
+          {
+            "$ref": "#/parameters/hint"
+          },
+          {
+            "$ref": "#/parameters/comment"
+          },
+          {
+            "$ref": "#/parameters/select"
+          },
+          {
+            "$ref": "#/parameters/populate"
+          },
+          {
+            "$ref": "#/parameters/sort"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sucessful response. Collection of resources.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Recibos"
+              }
+            }
+          },
+          "404": {
+            "description": "No recibos matched that query.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        },
+        "operationId": "queryRecibos",
+        "summary": "Query some recibos",
+        "description": "Query over recibos.",
+        "tags": [
+          "Recibos"
+        ]
+      },
+      "post": {
+        "parameters": [
+          {
+            "name": "document",
+            "in": "body",
+            "description": "Create a document by sending the paths to be added in the request body.",
+            "schema": {
+              "$ref": "#/definitions/Recibos"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/parameters/select"
+          },
+          {
+            "$ref": "#/parameters/populate"
+          },
+          {
+            "$ref": "#/parameters/sort"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sucessful response. Single resource.",
+            "schema": {
+              "$ref": "#/definitions/Recibos"
+            }
+          },
+          "404": {
+            "description": "No recibos matched that query.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "422": {
+            "description": "Validation error.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ValidationError"
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        },
+        "operationId": "createRecibos",
+        "summary": "Create some recibos",
+        "description": "Create one or more recibos.",
+        "tags": [
+          "Recibos"
+        ]
+      },
+      "delete": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/skip"
+          },
+          {
+            "$ref": "#/parameters/limit"
+          },
+          {
+            "$ref": "#/parameters/conditions"
+          },
+          {
+            "$ref": "#/parameters/distinct"
+          },
+          {
+            "$ref": "#/parameters/hint"
+          },
+          {
+            "$ref": "#/parameters/comment"
+          },
+          {
+            "$ref": "#/parameters/select"
+          },
+          {
+            "$ref": "#/parameters/populate"
+          },
+          {
+            "$ref": "#/parameters/sort"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sucessful response. Collection of resources.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Recibos"
+              }
+            }
+          },
+          "404": {
+            "description": "No recibos matched that query.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        },
+        "operationId": "deleteRecibosByQuery",
+        "summary": "Delete some recibos by query",
+        "description": "Delete all recibos matching the specified query.",
+        "tags": [
+          "Recibos"
+        ]
+      }
+    },
+    "/groupreceipts/{id}": {
+      "parameters": [
+        {
+          "$ref": "#/parameters/select"
+        },
+        {
+          "$ref": "#/parameters/populate"
+        },
+        {
+          "$ref": "#/parameters/id"
+        }
+      ],
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Sucessful response. Single resource.",
+            "schema": {
+              "$ref": "#/definitions/Groupreceipt"
+            }
+          },
+          "404": {
+            "description": "No Groupreceipt was found with that ID.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        },
+        "operationId": "getGroupreceiptById",
+        "summary": "Get a Groupreceipt by its unique ID",
+        "description": "Retrieve a Groupreceipt by its ID.",
+        "tags": [
+          "Groupreceipt"
+        ]
+      },
+      "put": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/X-Baucis-Update-Operator"
+          },
+          {
+            "name": "document",
+            "in": "body",
+            "description": "Update a document by sending the paths to be updated in the request body.",
+            "schema": {
+              "$ref": "#/definitions/Groupreceipt"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/parameters/select"
+          },
+          {
+            "$ref": "#/parameters/populate"
+          },
+          {
+            "$ref": "#/parameters/id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sucessful response. Single resource.",
+            "schema": {
+              "$ref": "#/definitions/Groupreceipt"
+            }
+          },
+          "404": {
+            "description": "No Groupreceipt was found with that ID.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "422": {
+            "description": "Validation error.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ValidationError"
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        },
+        "operationId": "updateGroupreceipt",
+        "summary": "Modify a Groupreceipt by its unique ID",
+        "description": "Update an existing Groupreceipt by its ID.",
+        "tags": [
+          "Groupreceipt"
+        ]
+      },
+      "delete": {
+        "responses": {
+          "200": {
+            "description": "Sucessful response. Single resource.",
+            "schema": {
+              "$ref": "#/definitions/Groupreceipt"
+            }
+          },
+          "404": {
+            "description": "No Groupreceipt was found with that ID.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        },
+        "operationId": "deleteGroupreceiptById",
+        "summary": "Delete a Groupreceipt by its unique ID",
+        "description": "Deletes an existing Groupreceipt by its ID.",
+        "tags": [
+          "Groupreceipt"
+        ]
+      }
+    },
+    "/groupreceipts": {
+      "parameters": [
+        {
+          "$ref": "#/parameters/select"
+        },
+        {
+          "$ref": "#/parameters/populate"
+        },
+        {
+          "$ref": "#/parameters/sort"
+        }
+      ],
+      "get": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/count"
+          },
+          {
+            "$ref": "#/parameters/skip"
+          },
+          {
+            "$ref": "#/parameters/limit"
+          },
+          {
+            "$ref": "#/parameters/conditions"
+          },
+          {
+            "$ref": "#/parameters/distinct"
+          },
+          {
+            "$ref": "#/parameters/hint"
+          },
+          {
+            "$ref": "#/parameters/comment"
+          },
+          {
+            "$ref": "#/parameters/select"
+          },
+          {
+            "$ref": "#/parameters/populate"
+          },
+          {
+            "$ref": "#/parameters/sort"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sucessful response. Collection of resources.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Groupreceipt"
+              }
+            }
+          },
+          "404": {
+            "description": "No groupreceipts matched that query.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        },
+        "operationId": "queryGroupreceipt",
+        "summary": "Query some groupreceipts",
+        "description": "Query over groupreceipts.",
+        "tags": [
+          "Groupreceipt"
+        ]
+      },
+      "post": {
+        "parameters": [
+          {
+            "name": "document",
+            "in": "body",
+            "description": "Create a document by sending the paths to be added in the request body.",
+            "schema": {
+              "$ref": "#/definitions/Groupreceipt"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/parameters/select"
+          },
+          {
+            "$ref": "#/parameters/populate"
+          },
+          {
+            "$ref": "#/parameters/sort"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sucessful response. Single resource.",
+            "schema": {
+              "$ref": "#/definitions/Groupreceipt"
+            }
+          },
+          "404": {
+            "description": "No groupreceipts matched that query.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "422": {
+            "description": "Validation error.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ValidationError"
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        },
+        "operationId": "createGroupreceipt",
+        "summary": "Create some groupreceipts",
+        "description": "Create one or more groupreceipts.",
+        "tags": [
+          "Groupreceipt"
+        ]
+      },
+      "delete": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/skip"
+          },
+          {
+            "$ref": "#/parameters/limit"
+          },
+          {
+            "$ref": "#/parameters/conditions"
+          },
+          {
+            "$ref": "#/parameters/distinct"
+          },
+          {
+            "$ref": "#/parameters/hint"
+          },
+          {
+            "$ref": "#/parameters/comment"
+          },
+          {
+            "$ref": "#/parameters/select"
+          },
+          {
+            "$ref": "#/parameters/populate"
+          },
+          {
+            "$ref": "#/parameters/sort"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sucessful response. Collection of resources.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Groupreceipt"
+              }
+            }
+          },
+          "404": {
+            "description": "No groupreceipts matched that query.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        },
+        "operationId": "deleteGroupreceiptByQuery",
+        "summary": "Delete some groupreceipts by query",
+        "description": "Delete all groupreceipts matching the specified query.",
+        "tags": [
+          "Groupreceipt"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "Empleado": {
+      "properties": {
+        "legajo": {
+          "type": "number",
+          "format": "double"
+        },
+        "name": {
+          "type": "string"
+        },
+        "last_name": {
+          "type": "string"
+        },
+        "dni": {
+          "type": "number",
+          "format": "double"
+        },
+        "_id": {
+          "type": "string"
+        },
+        "__v": {
+          "type": "number",
+          "format": "int32"
+        },
+        "id": {
+          "type": "string"
+        }
+      }
+    },
+    "ValidationError": {
+      "required": [
+        "message",
+        "name",
+        "kind",
+        "path"
+      ],
+      "properties": {
+        "properties": {
+          "$ref": "#/definitions/ValidationErrorProperties"
+        },
+        "message": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "kind": {
+          "type": "string"
+        },
+        "path": {
+          "type": "string"
+        }
+      }
+    },
+    "ValidationErrorProperties": {
+      "required": [
+        "type",
+        "message",
+        "path"
+      ],
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "path": {
+          "type": "string"
+        }
+      }
+    },
+    "Recibos": {
+      "properties": {
+        "legajo": {
+          "type": "number",
+          "format": "double"
+        },
+        "image": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string"
+        },
+        "firm": {
+          "type": "boolean"
+        },
+        "_id": {
+          "type": "string"
+        },
+        "__v": {
+          "type": "number",
+          "format": "int32"
+        },
+        "id": {
+          "type": "string"
+        }
+      }
+    },
+    "Groupreceipt": {
+      "properties": {
+        "legajo": {
+          "type": "number",
+          "format": "double"
+        },
+        "receipt": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "_id": {
+          "type": "string"
+        },
+        "__v": {
+          "type": "number",
+          "format": "int32"
+        },
+        "id": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "parameters": {
+    "id": {
+      "name": "id",
+      "in": "path",
+      "description": "The identifier of the resource.",
+      "type": "string",
+      "required": true
+    },
+    "skip": {
+      "name": "skip",
+      "in": "query",
+      "description": "How many documents to skip. [doc](https://github.com/wprl/baucis/wiki/Query-String-Parameters#skip)",
+      "type": "integer",
+      "format": "int32",
+      "required": false
+    },
+    "limit": {
+      "name": "limit",
+      "in": "query",
+      "description": "The maximum number of documents to send. [doc](https://github.com/wprl/baucis/wiki/Query-String-Parameters#limit)",
+      "type": "integer",
+      "format": "int32",
+      "required": false
+    },
+    "count": {
+      "name": "count",
+      "in": "query",
+      "description": "Set to true to return count instead of documents. [doc](https://github.com/wprl/baucis/wiki/Query-String-Parameters#count)",
+      "type": "boolean",
+      "required": false
+    },
+    "conditions": {
+      "name": "conditions",
+      "in": "query",
+      "description": "Set the conditions used to find or remove the document(s). [doc](https://github.com/wprl/baucis/wiki/Query-String-Parameters#conditions)",
+      "type": "string",
+      "required": false
+    },
+    "sort": {
+      "name": "sort",
+      "in": "query",
+      "description": "Set the fields by which to sort. [doc](https://github.com/wprl/baucis/wiki/Query-String-Parameters#sort)",
+      "type": "string",
+      "required": false
+    },
+    "distinct": {
+      "name": "distinct",
+      "in": "query",
+      "description": "Set to a path name to retrieve an array of distinct values. [doc](https://github.com/wprl/baucis/wiki/Query-String-Parameters#distinct)",
+      "type": "string",
+      "required": false
+    },
+    "hint": {
+      "name": "hint",
+      "in": "query",
+      "description": "Add an index hint to the query (must be enabled per controller). [doc](https://github.com/wprl/baucis/wiki/Query-String-Parameters#hint)",
+      "type": "string",
+      "required": false
+    },
+    "comment": {
+      "name": "comment",
+      "in": "query",
+      "description": "Add a comment to a query (must be enabled per controller). [doc](https://github.com/wprl/baucis/wiki/Query-String-Parameters#comment)",
+      "type": "string",
+      "required": false
+    },
+    "select": {
+      "name": "select",
+      "in": "query",
+      "description": "Select which paths will be returned by the query. [doc](https://github.com/wprl/baucis/wiki/Query-String-Parameters#select)",
+      "type": "string",
+      "required": false
+    },
+    "populate": {
+      "name": "populate",
+      "in": "query",
+      "description": "Specify which paths to populate. [doc](https://github.com/wprl/baucis/wiki/Query-String-Parameters#populate)",
+      "type": "string",
+      "required": false
+    },
+    "X-Baucis-Update-Operator": {
+      "name": "X-Baucis-Update-Operator",
+      "in": "header",
+      "description": "**BYPASSES VALIDATION** May be used with PUT to update the document using $push, $pull, or $set. [doc](https://github.com/wprl/baucis/wiki/HTTP-Headers)",
+      "type": "string",
+      "required": false
+    }
+  }
+}
