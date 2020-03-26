@@ -1004,6 +1004,9 @@
   },
   "definitions": {
     "Empleado": {
+      "required": [
+        "legajo"
+      ],
       "properties": {
         "legajo": {
           "type": "number",
@@ -1018,6 +1021,9 @@
         "dni": {
           "type": "number",
           "format": "double"
+        },
+        "status": {
+          "type": "string"
         },
         "_id": {
           "type": "string"
@@ -1075,6 +1081,10 @@
       }
     },
     "Recibos": {
+      "required": [
+        "legajo",
+        "date"
+      ],
       "properties": {
         "legajo": {
           "type": "number",
@@ -1102,6 +1112,9 @@
       }
     },
     "Groupreceipt": {
+      "required": [
+        "legajo"
+      ],
       "properties": {
         "legajo": {
           "type": "number",

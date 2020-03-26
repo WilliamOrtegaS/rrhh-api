@@ -87,6 +87,37 @@
           }
         }
       }
+    },
+    "/status/{receiptID}": {
+      "x-swagger-router-controller": "status",
+      "post": {
+        "tags": [
+          "StatusOK"
+        ],
+        "operationId": "getStatus",
+        "parameters": [
+          {
+            "name": "receiptID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/GenericResponse"
+            }
+          },
+          "default": {
+            "description": "Error",
+            "schema": {
+              "$ref": "#/definitions/GenericErrorResponse"
+            }
+          }
+        }
+      }
     }
   },
   "definitions": {

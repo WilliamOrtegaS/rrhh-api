@@ -1068,10 +1068,44 @@
 					}
 				}
 			}
+		},
+		"/status/{receiptID}": {
+			"x-swagger-router-controller": "status",
+			"post": {
+				"tags": [
+					"StatusOK"
+				],
+				"operationId": "getStatus",
+				"parameters": [
+					{
+						"name": "receiptID",
+						"in": "path",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Success",
+						"schema": {
+							"$ref": "#/definitions/GenericResponse"
+						}
+					},
+					"default": {
+						"description": "Error",
+						"schema": {
+							"$ref": "#/definitions/GenericErrorResponse"
+						}
+					}
+				}
+			}
 		}
 	},
 	"definitions": {
 		"Empleado": {
+			"required": [
+				"legajo"
+			],
 			"properties": {
 				"legajo": {
 					"type": "number",
@@ -1086,6 +1120,9 @@
 				"dni": {
 					"type": "number",
 					"format": "double"
+				},
+				"status": {
+					"type": "string"
 				},
 				"_id": {
 					"type": "string"
@@ -1143,6 +1180,10 @@
 			}
 		},
 		"Recibos": {
+			"required": [
+				"legajo",
+				"date"
+			],
 			"properties": {
 				"legajo": {
 					"type": "number",
@@ -1170,6 +1211,9 @@
 			}
 		},
 		"Groupreceipt": {
+			"required": [
+				"legajo"
+			],
 			"properties": {
 				"legajo": {
 					"type": "number",

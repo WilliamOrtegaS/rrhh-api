@@ -72,6 +72,30 @@ paths:
           description: Error
           schema:
             $ref: "#/definitions/GenericErrorResponse"
+  /status/{receiptID}:
+    # binds a127 app logic to a route
+    x-swagger-router-controller: status
+    post:
+      tags:
+        - StatusOK
+      # used as the method name of the controller
+      operationId: getStatus
+      parameters:
+        - name: receiptID
+          in: path
+          required: true
+          type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/GenericResponse"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/GenericErrorResponse"
 # complex objects have schema definitions
 definitions:
   GenericResponse:
