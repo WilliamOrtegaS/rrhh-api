@@ -21,6 +21,26 @@
       "name": "Groupreceipt",
       "description": "Groupreceipt resource.",
       "x-resource": true
+    },
+    {
+      "name": "Agenda",
+      "description": "Agenda resource.",
+      "x-resource": true
+    },
+    {
+      "name": "Login",
+      "description": "Login resource.",
+      "x-resource": true
+    },
+    {
+      "name": "Sucursal",
+      "description": "Sucursal resource.",
+      "x-resource": true
+    },
+    {
+      "name": "Diary",
+      "description": "Diary resource.",
+      "x-resource": true
     }
   ],
   "schemes": [
@@ -1000,6 +1020,1294 @@
           "Groupreceipt"
         ]
       }
+    },
+    "/agendas/{id}": {
+      "parameters": [
+        {
+          "$ref": "#/parameters/select"
+        },
+        {
+          "$ref": "#/parameters/populate"
+        },
+        {
+          "$ref": "#/parameters/id"
+        }
+      ],
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Sucessful response. Single resource.",
+            "schema": {
+              "$ref": "#/definitions/Agenda"
+            }
+          },
+          "404": {
+            "description": "No Agenda was found with that ID.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        },
+        "operationId": "getAgendaById",
+        "summary": "Get a Agenda by its unique ID",
+        "description": "Retrieve a Agenda by its ID.",
+        "tags": [
+          "Agenda"
+        ]
+      },
+      "put": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/X-Baucis-Update-Operator"
+          },
+          {
+            "name": "document",
+            "in": "body",
+            "description": "Update a document by sending the paths to be updated in the request body.",
+            "schema": {
+              "$ref": "#/definitions/Agenda"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/parameters/select"
+          },
+          {
+            "$ref": "#/parameters/populate"
+          },
+          {
+            "$ref": "#/parameters/id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sucessful response. Single resource.",
+            "schema": {
+              "$ref": "#/definitions/Agenda"
+            }
+          },
+          "404": {
+            "description": "No Agenda was found with that ID.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "422": {
+            "description": "Validation error.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ValidationError"
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        },
+        "operationId": "updateAgenda",
+        "summary": "Modify a Agenda by its unique ID",
+        "description": "Update an existing Agenda by its ID.",
+        "tags": [
+          "Agenda"
+        ]
+      },
+      "delete": {
+        "responses": {
+          "200": {
+            "description": "Sucessful response. Single resource.",
+            "schema": {
+              "$ref": "#/definitions/Agenda"
+            }
+          },
+          "404": {
+            "description": "No Agenda was found with that ID.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        },
+        "operationId": "deleteAgendaById",
+        "summary": "Delete a Agenda by its unique ID",
+        "description": "Deletes an existing Agenda by its ID.",
+        "tags": [
+          "Agenda"
+        ]
+      }
+    },
+    "/agendas": {
+      "parameters": [
+        {
+          "$ref": "#/parameters/select"
+        },
+        {
+          "$ref": "#/parameters/populate"
+        },
+        {
+          "$ref": "#/parameters/sort"
+        }
+      ],
+      "get": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/count"
+          },
+          {
+            "$ref": "#/parameters/skip"
+          },
+          {
+            "$ref": "#/parameters/limit"
+          },
+          {
+            "$ref": "#/parameters/conditions"
+          },
+          {
+            "$ref": "#/parameters/distinct"
+          },
+          {
+            "$ref": "#/parameters/hint"
+          },
+          {
+            "$ref": "#/parameters/comment"
+          },
+          {
+            "$ref": "#/parameters/select"
+          },
+          {
+            "$ref": "#/parameters/populate"
+          },
+          {
+            "$ref": "#/parameters/sort"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sucessful response. Collection of resources.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Agenda"
+              }
+            }
+          },
+          "404": {
+            "description": "No agendas matched that query.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        },
+        "operationId": "queryAgenda",
+        "summary": "Query some agendas",
+        "description": "Query over agendas.",
+        "tags": [
+          "Agenda"
+        ]
+      },
+      "post": {
+        "parameters": [
+          {
+            "name": "document",
+            "in": "body",
+            "description": "Create a document by sending the paths to be added in the request body.",
+            "schema": {
+              "$ref": "#/definitions/Agenda"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/parameters/select"
+          },
+          {
+            "$ref": "#/parameters/populate"
+          },
+          {
+            "$ref": "#/parameters/sort"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sucessful response. Single resource.",
+            "schema": {
+              "$ref": "#/definitions/Agenda"
+            }
+          },
+          "404": {
+            "description": "No agendas matched that query.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "422": {
+            "description": "Validation error.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ValidationError"
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        },
+        "operationId": "createAgenda",
+        "summary": "Create some agendas",
+        "description": "Create one or more agendas.",
+        "tags": [
+          "Agenda"
+        ]
+      },
+      "delete": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/skip"
+          },
+          {
+            "$ref": "#/parameters/limit"
+          },
+          {
+            "$ref": "#/parameters/conditions"
+          },
+          {
+            "$ref": "#/parameters/distinct"
+          },
+          {
+            "$ref": "#/parameters/hint"
+          },
+          {
+            "$ref": "#/parameters/comment"
+          },
+          {
+            "$ref": "#/parameters/select"
+          },
+          {
+            "$ref": "#/parameters/populate"
+          },
+          {
+            "$ref": "#/parameters/sort"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sucessful response. Collection of resources.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Agenda"
+              }
+            }
+          },
+          "404": {
+            "description": "No agendas matched that query.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        },
+        "operationId": "deleteAgendaByQuery",
+        "summary": "Delete some agendas by query",
+        "description": "Delete all agendas matching the specified query.",
+        "tags": [
+          "Agenda"
+        ]
+      }
+    },
+    "/logins/{id}": {
+      "parameters": [
+        {
+          "$ref": "#/parameters/select"
+        },
+        {
+          "$ref": "#/parameters/populate"
+        },
+        {
+          "$ref": "#/parameters/id"
+        }
+      ],
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Sucessful response. Single resource.",
+            "schema": {
+              "$ref": "#/definitions/Login"
+            }
+          },
+          "404": {
+            "description": "No Login was found with that ID.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        },
+        "operationId": "getLoginById",
+        "summary": "Get a Login by its unique ID",
+        "description": "Retrieve a Login by its ID.",
+        "tags": [
+          "Login"
+        ]
+      },
+      "put": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/X-Baucis-Update-Operator"
+          },
+          {
+            "name": "document",
+            "in": "body",
+            "description": "Update a document by sending the paths to be updated in the request body.",
+            "schema": {
+              "$ref": "#/definitions/Login"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/parameters/select"
+          },
+          {
+            "$ref": "#/parameters/populate"
+          },
+          {
+            "$ref": "#/parameters/id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sucessful response. Single resource.",
+            "schema": {
+              "$ref": "#/definitions/Login"
+            }
+          },
+          "404": {
+            "description": "No Login was found with that ID.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "422": {
+            "description": "Validation error.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ValidationError"
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        },
+        "operationId": "updateLogin",
+        "summary": "Modify a Login by its unique ID",
+        "description": "Update an existing Login by its ID.",
+        "tags": [
+          "Login"
+        ]
+      },
+      "delete": {
+        "responses": {
+          "200": {
+            "description": "Sucessful response. Single resource.",
+            "schema": {
+              "$ref": "#/definitions/Login"
+            }
+          },
+          "404": {
+            "description": "No Login was found with that ID.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        },
+        "operationId": "deleteLoginById",
+        "summary": "Delete a Login by its unique ID",
+        "description": "Deletes an existing Login by its ID.",
+        "tags": [
+          "Login"
+        ]
+      }
+    },
+    "/logins": {
+      "parameters": [
+        {
+          "$ref": "#/parameters/select"
+        },
+        {
+          "$ref": "#/parameters/populate"
+        },
+        {
+          "$ref": "#/parameters/sort"
+        }
+      ],
+      "get": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/count"
+          },
+          {
+            "$ref": "#/parameters/skip"
+          },
+          {
+            "$ref": "#/parameters/limit"
+          },
+          {
+            "$ref": "#/parameters/conditions"
+          },
+          {
+            "$ref": "#/parameters/distinct"
+          },
+          {
+            "$ref": "#/parameters/hint"
+          },
+          {
+            "$ref": "#/parameters/comment"
+          },
+          {
+            "$ref": "#/parameters/select"
+          },
+          {
+            "$ref": "#/parameters/populate"
+          },
+          {
+            "$ref": "#/parameters/sort"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sucessful response. Collection of resources.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Login"
+              }
+            }
+          },
+          "404": {
+            "description": "No logins matched that query.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        },
+        "operationId": "queryLogin",
+        "summary": "Query some logins",
+        "description": "Query over logins.",
+        "tags": [
+          "Login"
+        ]
+      },
+      "post": {
+        "parameters": [
+          {
+            "name": "document",
+            "in": "body",
+            "description": "Create a document by sending the paths to be added in the request body.",
+            "schema": {
+              "$ref": "#/definitions/Login"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/parameters/select"
+          },
+          {
+            "$ref": "#/parameters/populate"
+          },
+          {
+            "$ref": "#/parameters/sort"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sucessful response. Single resource.",
+            "schema": {
+              "$ref": "#/definitions/Login"
+            }
+          },
+          "404": {
+            "description": "No logins matched that query.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "422": {
+            "description": "Validation error.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ValidationError"
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        },
+        "operationId": "createLogin",
+        "summary": "Create some logins",
+        "description": "Create one or more logins.",
+        "tags": [
+          "Login"
+        ]
+      },
+      "delete": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/skip"
+          },
+          {
+            "$ref": "#/parameters/limit"
+          },
+          {
+            "$ref": "#/parameters/conditions"
+          },
+          {
+            "$ref": "#/parameters/distinct"
+          },
+          {
+            "$ref": "#/parameters/hint"
+          },
+          {
+            "$ref": "#/parameters/comment"
+          },
+          {
+            "$ref": "#/parameters/select"
+          },
+          {
+            "$ref": "#/parameters/populate"
+          },
+          {
+            "$ref": "#/parameters/sort"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sucessful response. Collection of resources.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Login"
+              }
+            }
+          },
+          "404": {
+            "description": "No logins matched that query.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        },
+        "operationId": "deleteLoginByQuery",
+        "summary": "Delete some logins by query",
+        "description": "Delete all logins matching the specified query.",
+        "tags": [
+          "Login"
+        ]
+      }
+    },
+    "/sucursals/{id}": {
+      "parameters": [
+        {
+          "$ref": "#/parameters/select"
+        },
+        {
+          "$ref": "#/parameters/populate"
+        },
+        {
+          "$ref": "#/parameters/id"
+        }
+      ],
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Sucessful response. Single resource.",
+            "schema": {
+              "$ref": "#/definitions/Sucursal"
+            }
+          },
+          "404": {
+            "description": "No Sucursal was found with that ID.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        },
+        "operationId": "getSucursalById",
+        "summary": "Get a Sucursal by its unique ID",
+        "description": "Retrieve a Sucursal by its ID.",
+        "tags": [
+          "Sucursal"
+        ]
+      },
+      "put": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/X-Baucis-Update-Operator"
+          },
+          {
+            "name": "document",
+            "in": "body",
+            "description": "Update a document by sending the paths to be updated in the request body.",
+            "schema": {
+              "$ref": "#/definitions/Sucursal"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/parameters/select"
+          },
+          {
+            "$ref": "#/parameters/populate"
+          },
+          {
+            "$ref": "#/parameters/id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sucessful response. Single resource.",
+            "schema": {
+              "$ref": "#/definitions/Sucursal"
+            }
+          },
+          "404": {
+            "description": "No Sucursal was found with that ID.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "422": {
+            "description": "Validation error.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ValidationError"
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        },
+        "operationId": "updateSucursal",
+        "summary": "Modify a Sucursal by its unique ID",
+        "description": "Update an existing Sucursal by its ID.",
+        "tags": [
+          "Sucursal"
+        ]
+      },
+      "delete": {
+        "responses": {
+          "200": {
+            "description": "Sucessful response. Single resource.",
+            "schema": {
+              "$ref": "#/definitions/Sucursal"
+            }
+          },
+          "404": {
+            "description": "No Sucursal was found with that ID.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        },
+        "operationId": "deleteSucursalById",
+        "summary": "Delete a Sucursal by its unique ID",
+        "description": "Deletes an existing Sucursal by its ID.",
+        "tags": [
+          "Sucursal"
+        ]
+      }
+    },
+    "/sucursals": {
+      "parameters": [
+        {
+          "$ref": "#/parameters/select"
+        },
+        {
+          "$ref": "#/parameters/populate"
+        },
+        {
+          "$ref": "#/parameters/sort"
+        }
+      ],
+      "get": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/count"
+          },
+          {
+            "$ref": "#/parameters/skip"
+          },
+          {
+            "$ref": "#/parameters/limit"
+          },
+          {
+            "$ref": "#/parameters/conditions"
+          },
+          {
+            "$ref": "#/parameters/distinct"
+          },
+          {
+            "$ref": "#/parameters/hint"
+          },
+          {
+            "$ref": "#/parameters/comment"
+          },
+          {
+            "$ref": "#/parameters/select"
+          },
+          {
+            "$ref": "#/parameters/populate"
+          },
+          {
+            "$ref": "#/parameters/sort"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sucessful response. Collection of resources.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Sucursal"
+              }
+            }
+          },
+          "404": {
+            "description": "No sucursals matched that query.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        },
+        "operationId": "querySucursal",
+        "summary": "Query some sucursals",
+        "description": "Query over sucursals.",
+        "tags": [
+          "Sucursal"
+        ]
+      },
+      "post": {
+        "parameters": [
+          {
+            "name": "document",
+            "in": "body",
+            "description": "Create a document by sending the paths to be added in the request body.",
+            "schema": {
+              "$ref": "#/definitions/Sucursal"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/parameters/select"
+          },
+          {
+            "$ref": "#/parameters/populate"
+          },
+          {
+            "$ref": "#/parameters/sort"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sucessful response. Single resource.",
+            "schema": {
+              "$ref": "#/definitions/Sucursal"
+            }
+          },
+          "404": {
+            "description": "No sucursals matched that query.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "422": {
+            "description": "Validation error.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ValidationError"
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        },
+        "operationId": "createSucursal",
+        "summary": "Create some sucursals",
+        "description": "Create one or more sucursals.",
+        "tags": [
+          "Sucursal"
+        ]
+      },
+      "delete": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/skip"
+          },
+          {
+            "$ref": "#/parameters/limit"
+          },
+          {
+            "$ref": "#/parameters/conditions"
+          },
+          {
+            "$ref": "#/parameters/distinct"
+          },
+          {
+            "$ref": "#/parameters/hint"
+          },
+          {
+            "$ref": "#/parameters/comment"
+          },
+          {
+            "$ref": "#/parameters/select"
+          },
+          {
+            "$ref": "#/parameters/populate"
+          },
+          {
+            "$ref": "#/parameters/sort"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sucessful response. Collection of resources.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Sucursal"
+              }
+            }
+          },
+          "404": {
+            "description": "No sucursals matched that query.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        },
+        "operationId": "deleteSucursalByQuery",
+        "summary": "Delete some sucursals by query",
+        "description": "Delete all sucursals matching the specified query.",
+        "tags": [
+          "Sucursal"
+        ]
+      }
+    },
+    "/diaries/{id}": {
+      "parameters": [
+        {
+          "$ref": "#/parameters/select"
+        },
+        {
+          "$ref": "#/parameters/populate"
+        },
+        {
+          "$ref": "#/parameters/id"
+        }
+      ],
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Sucessful response. Single resource.",
+            "schema": {
+              "$ref": "#/definitions/Diary"
+            }
+          },
+          "404": {
+            "description": "No Diary was found with that ID.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        },
+        "operationId": "getDiaryById",
+        "summary": "Get a Diary by its unique ID",
+        "description": "Retrieve a Diary by its ID.",
+        "tags": [
+          "Diary"
+        ]
+      },
+      "put": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/X-Baucis-Update-Operator"
+          },
+          {
+            "name": "document",
+            "in": "body",
+            "description": "Update a document by sending the paths to be updated in the request body.",
+            "schema": {
+              "$ref": "#/definitions/Diary"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/parameters/select"
+          },
+          {
+            "$ref": "#/parameters/populate"
+          },
+          {
+            "$ref": "#/parameters/id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sucessful response. Single resource.",
+            "schema": {
+              "$ref": "#/definitions/Diary"
+            }
+          },
+          "404": {
+            "description": "No Diary was found with that ID.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "422": {
+            "description": "Validation error.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ValidationError"
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        },
+        "operationId": "updateDiary",
+        "summary": "Modify a Diary by its unique ID",
+        "description": "Update an existing Diary by its ID.",
+        "tags": [
+          "Diary"
+        ]
+      },
+      "delete": {
+        "responses": {
+          "200": {
+            "description": "Sucessful response. Single resource.",
+            "schema": {
+              "$ref": "#/definitions/Diary"
+            }
+          },
+          "404": {
+            "description": "No Diary was found with that ID.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        },
+        "operationId": "deleteDiaryById",
+        "summary": "Delete a Diary by its unique ID",
+        "description": "Deletes an existing Diary by its ID.",
+        "tags": [
+          "Diary"
+        ]
+      }
+    },
+    "/diaries": {
+      "parameters": [
+        {
+          "$ref": "#/parameters/select"
+        },
+        {
+          "$ref": "#/parameters/populate"
+        },
+        {
+          "$ref": "#/parameters/sort"
+        }
+      ],
+      "get": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/count"
+          },
+          {
+            "$ref": "#/parameters/skip"
+          },
+          {
+            "$ref": "#/parameters/limit"
+          },
+          {
+            "$ref": "#/parameters/conditions"
+          },
+          {
+            "$ref": "#/parameters/distinct"
+          },
+          {
+            "$ref": "#/parameters/hint"
+          },
+          {
+            "$ref": "#/parameters/comment"
+          },
+          {
+            "$ref": "#/parameters/select"
+          },
+          {
+            "$ref": "#/parameters/populate"
+          },
+          {
+            "$ref": "#/parameters/sort"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sucessful response. Collection of resources.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Diary"
+              }
+            }
+          },
+          "404": {
+            "description": "No diaries matched that query.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        },
+        "operationId": "queryDiary",
+        "summary": "Query some diaries",
+        "description": "Query over diaries.",
+        "tags": [
+          "Diary"
+        ]
+      },
+      "post": {
+        "parameters": [
+          {
+            "name": "document",
+            "in": "body",
+            "description": "Create a document by sending the paths to be added in the request body.",
+            "schema": {
+              "$ref": "#/definitions/Diary"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/parameters/select"
+          },
+          {
+            "$ref": "#/parameters/populate"
+          },
+          {
+            "$ref": "#/parameters/sort"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sucessful response. Single resource.",
+            "schema": {
+              "$ref": "#/definitions/Diary"
+            }
+          },
+          "404": {
+            "description": "No diaries matched that query.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "422": {
+            "description": "Validation error.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ValidationError"
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        },
+        "operationId": "createDiary",
+        "summary": "Create some diaries",
+        "description": "Create one or more diaries.",
+        "tags": [
+          "Diary"
+        ]
+      },
+      "delete": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/skip"
+          },
+          {
+            "$ref": "#/parameters/limit"
+          },
+          {
+            "$ref": "#/parameters/conditions"
+          },
+          {
+            "$ref": "#/parameters/distinct"
+          },
+          {
+            "$ref": "#/parameters/hint"
+          },
+          {
+            "$ref": "#/parameters/comment"
+          },
+          {
+            "$ref": "#/parameters/select"
+          },
+          {
+            "$ref": "#/parameters/populate"
+          },
+          {
+            "$ref": "#/parameters/sort"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sucessful response. Collection of resources.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Diary"
+              }
+            }
+          },
+          "404": {
+            "description": "No diaries matched that query.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "default": {
+            "description": "Unexpected error.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        },
+        "operationId": "deleteDiaryByQuery",
+        "summary": "Delete some diaries by query",
+        "description": "Delete all diaries matching the specified query.",
+        "tags": [
+          "Diary"
+        ]
+      }
     }
   },
   "definitions": {
@@ -1081,10 +2389,6 @@
       }
     },
     "Recibos": {
-      "required": [
-        "legajo",
-        "date"
-      ],
       "properties": {
         "legajo": {
           "type": "number",
@@ -1125,6 +2429,118 @@
           "items": {
             "type": "string"
           }
+        },
+        "_id": {
+          "type": "string"
+        },
+        "__v": {
+          "type": "number",
+          "format": "int32"
+        },
+        "id": {
+          "type": "string"
+        }
+      }
+    },
+    "Agenda": {
+      "properties": {
+        "namesucursal": {
+          "type": "string"
+        },
+        "sucursal": {
+          "type": "string"
+        },
+        "desdehora": {
+          "type": "string"
+        },
+        "hastahora": {
+          "type": "string"
+        },
+        "selectDias": {
+          "type": "string"
+        },
+        "intervalo": {
+          "type": "number",
+          "format": "double"
+        },
+        "cupo": {
+          "type": "string"
+        },
+        "cantAsignados": {
+          "type": "number",
+          "format": "double"
+        },
+        "_id": {
+          "type": "string"
+        },
+        "__v": {
+          "type": "number",
+          "format": "int32"
+        },
+        "id": {
+          "type": "string"
+        }
+      }
+    },
+    "Login": {
+      "properties": {
+        "username": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "image": {
+          "type": "string"
+        },
+        "_id": {
+          "type": "string"
+        },
+        "__v": {
+          "type": "number",
+          "format": "int32"
+        },
+        "id": {
+          "type": "string"
+        }
+      }
+    },
+    "Sucursal": {
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "procedure": {
+          "type": "string"
+        },
+        "_id": {
+          "type": "string"
+        },
+        "__v": {
+          "type": "number",
+          "format": "int32"
+        },
+        "id": {
+          "type": "string"
+        }
+      }
+    },
+    "Diary": {
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "branch": {
+          "type": "string"
+        },
+        "slots": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "active": {
+          "type": "boolean"
         },
         "_id": {
           "type": "string"

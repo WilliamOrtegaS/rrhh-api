@@ -32,9 +32,11 @@ function initialize(logger) {
     app.use(compression());
     app.use(cors());
     app.use(bodyParser.urlencoded({
-        extended: true
+        limit: '50mb',
+        extended: true,
+        parameterLimit: 50000
     }));
-    app.use(bodyParser.json());
+    app.use(bodyParser.json({limit: '50mb'}));
     app.use(expressWinston.logger({
         winstonInstance: logger,
         expressFormat:   true,
